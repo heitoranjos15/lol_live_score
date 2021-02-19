@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "5db483e5-a950-4aa4-a6c7-7e97f954f4ed",
+		"name": "LOL Esports Live",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Schedule",
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US",
+					"protocol": "https",
+					"host": [
+						"esports-api",
+						"lolesports",
+						"com"
+					],
+					"path": [
+						"persisted",
+						"gw",
+						"getSchedule"
+					],
+					"query": [
+						{
+							"key": "hl",
+							"value": "en-US"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Game Details",
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-US&id=105562692794174492",
+					"protocol": "https",
+					"host": [
+						"esports-api",
+						"lolesports",
+						"com"
+					],
+					"path": [
+						"persisted",
+						"gw",
+						"getEventDetails"
+					],
+					"query": [
+						{
+							"key": "hl",
+							"value": "en-US"
+						},
+						{
+							"key": "id",
+							"value": "105562692794174492"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Live Stats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://feed.lolesports.com/livestats/v1/window/105562692794174493",
+					"protocol": "https",
+					"host": [
+						"feed",
+						"lolesports",
+						"com"
+					],
+					"path": [
+						"livestats",
+						"v1",
+						"window",
+						"105562692794174493"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Live Stats details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://feed.lolesports.com/livestats/v1/details/105562692794174493",
+					"protocol": "https",
+					"host": [
+						"feed",
+						"lolesports",
+						"com"
+					],
+					"path": [
+						"livestats",
+						"v1",
+						"details",
+						"105562692794174493"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
