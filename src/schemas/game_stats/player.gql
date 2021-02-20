@@ -1,0 +1,21 @@
+type Player {
+    name: String!
+    position: Position!
+    champion: String!
+    gold: Int!
+    level: Int!
+    kills: Int!
+    deaths: Int!
+    assists: Int!
+    farm: Int!
+    current_health: Int!
+    max_health: Int!
+}
+
+enum Position {
+    TOP
+    JUNGLE
+    MID
+    ADC
+    SUP
+}

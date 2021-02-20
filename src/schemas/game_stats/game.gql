@@ -1,0 +1,15 @@
+type GameStats {
+    blueTeam: TeamStats!
+    redTeam: TeamStats!
+    dragonsTotal: Int!
+    baronsTotal: Int!
+    towersTotal: Int!
+    goldTotal: Int!
+    time: String!
+    status: String!
+}
+
+
+type Query {
+    gameStats(gameId: Int): GameStats
+}

@@ -1,0 +1,9 @@
+type TeamStats {
+    name: String!
+    barons: Int!
+    dragons: [String!]!
+    gold: Int!
+    kills: Int!
+    inhibitors: Int!
+    players: [Player!]!
+}

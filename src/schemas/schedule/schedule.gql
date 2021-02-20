@@ -1,0 +1,18 @@
+type Event {
+    start_time: String!
+    status: String!
+    type: String!
+    stage: String!
+    league: String!
+    teams: [TeamEvent!]!
+    strategy: String!
+}
+
+type TeamEvent {
+    name: String!
+    record: String! 
+}
+
+type Query {
+    schedule: [Event]!
+}
