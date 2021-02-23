@@ -1,0 +1,43 @@
+
+service: graphql-api
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  timeout: 30
+  memorySize: 256
+
+functions:
+  graphql:
+    handler: src/lambda.handler
+    events:
+    - http:
+        path: graphql
+        method: post
+        cors: true
+    - http:
+        path: graphql
+        method: get
+        cors: true
+
+plugins:
+  - serverless-offline
+
+package:
+  exclude:
+    - .gitignore
+    - .editorconfig
+    - .eslintrc.js
+    - bump_version.sh
+    - quick_tag.sh
+    - README.md
+    - .git/**
+    - .vscode/**
+    - .circleci/**
+    - .serverless/**
+    - .dynamodb/**
+    - shared-local-instance.db
+    - deployment
+    - fixtures/test/**
+    - tests
+ 

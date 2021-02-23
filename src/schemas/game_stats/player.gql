@@ -8,14 +8,14 @@ type Player {
     deaths: Int!
     assists: Int!
     farm: Int!
-    current_health: Int!
-    max_health: Int!
+    currentHealth: Int!
+    maxHealth: Int!
 }
 
 enum Position {
     TOP
     JUNGLE
     MID
-    ADC
-    SUP
+    BOTTOM
+    SUPPORT
 }

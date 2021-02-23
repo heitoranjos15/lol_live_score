@@ -1,9 +1,16 @@
-type TeamStats {
+type Team {
     name: String!
     barons: Int!
     dragons: [String!]!
     gold: Int!
     kills: Int!
     inhibitors: Int!
+    towers: Int!
     players: [Player!]!
+    side: Side
+}
+
+enum Side {
+    BLUE
+    RED
 }

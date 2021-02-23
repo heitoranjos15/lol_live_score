@@ -1,3 +1,6 @@
+const glob = require('fast-glob')
+const { readFileSync } = require('fs')
+const { join } = require('path')
 const { mergeTypes } = require('merge-graphql-schemas')
 
 const mergeSchemas = () => {
