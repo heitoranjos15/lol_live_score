@@ -23,7 +23,6 @@ const players = ({ teamStats: { participants }, playerDetails }) => playerDetail
         return { playerDetails, playerStats }
     })
 
-
 module.exports = {
     name,
     barons,

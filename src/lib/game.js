@@ -1,17 +1,18 @@
 const request = require('../../modules/integration')
+const cache = require('../../modules/cache')
 const config = require('../../configs')
 
 
 const formatDate = date => {
     let seconds = date.getUTCSeconds()
-    seconds = seconds - (seconds % 10)
+    seconds = (seconds - (seconds % 10)) - 20
     
     date.setUTCSeconds(seconds)
     date.setUTCMilliseconds(000)
     return date.toISOString()
 }
 
-const gameDetailsRequest = async matchId => {
+const gameDetailsRequest = (matchId) => async () => {
     const options = {
         method: 'get',
         url: `${config.EVENTS_URL}/persisted/gw/getEventDetails?hl=en-US&id=${matchId}`,
@@ -23,19 +24,30 @@ const gameDetailsRequest = async matchId => {
     return event
 }
 
-const gameStatsRequest = async gameId => {
+const gameStatsRequest = (gameId) => async () => {
     const date = new Date()
     const options = {
         method: 'get',
-        url: `${config.GAME_LIVE_URL}/livestats/v1/window/${gameId}`
+        url: `${config.GAME_LIVE_URL}/livestats/v1/window/${gameId}?startingTime=${formatDate(date)}`
     }
     
     const { data: stats } = await request(options)
     return { stats }
-} 
+}
 
+const getGameDetails = matchId => cache(
+    'game_details',
+    matchId,
+    gameDetailsRequest(matchId)
+)
+
+const getGameStats = gameId => cache(
+    'game_stats',
+    gameId,
+    gameStatsRequest(gameId)
+)
 
 module.exports = {
-    gameDetailsRequest,
-    gameStatsRequest
+    getGameDetails,
+    getGameStats
 }

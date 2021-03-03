@@ -5,7 +5,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   timeout: 30
-  memorySize: 256
+  memorySize: 5000
 
 functions:
   graphql:
@@ -28,16 +28,9 @@ package:
     - .gitignore
     - .editorconfig
     - .eslintrc.js
-    - bump_version.sh
-    - quick_tag.sh
     - README.md
     - .git/**
     - .vscode/**
-    - .circleci/**
     - .serverless/**
-    - .dynamodb/**
-    - shared-local-instance.db
-    - deployment
-    - fixtures/test/**
     - tests
  

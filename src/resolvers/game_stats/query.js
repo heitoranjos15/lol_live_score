@@ -1,7 +1,7 @@
-const { gameStatsRequest } = require('../../lib/game')
+const { getGameStats } = require('../../lib/game')
 
 
-const gameStats = async (_, { gameId }) => gameStatsRequest(gameId)
+const gameStats = async (_, { gameId }) => getGameStats(gameId)
 
 module.exports = {
     gameStats

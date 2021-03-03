@@ -1,9 +1,8 @@
-const { gameDetailsRequest } = require('../../lib/game')
+const { getGameDetails } = require('../../lib/game')
 
+const status = ({ stats: { frames } }) => frames[0].gameState
 
-const status = ({ stats: { frames } }) => {
-    return frames[0].gameState
-}
+const getGameSides = (games, gameId) => games.filter(({ id: gameCode }) => gameCode === gameId)[0].teams
 
 const getTeamSide = (sides, teamCode) => sides.filter(({ id: sideTeamCode }) => sideTeamCode === teamCode)[0]
 
@@ -16,9 +15,10 @@ const getTeamStats = (stats, side) => {
 }
 
 const teams = async ({ stats }) => {
-    const { esportsMatchId: matchId } = stats
+    const { esportsMatchId: matchId, esportsGameId: gameId } = stats
     
-    const details = await gameDetailsRequest(matchId)
+    const details = await getGameDetails(matchId)
+
     const {
         match: {
             teams: teamsDetails,
@@ -26,7 +26,7 @@ const teams = async ({ stats }) => {
         }
     } = details
 
-    const { teams: sides } = games[0]
+    const sides = getGameSides(games, gameId)
 
     return teamsDetails.map(teamInfo => {
         const { id: teamCode } = teamInfo
@@ -35,7 +35,6 @@ const teams = async ({ stats }) => {
         return { teamInfo, side, teamStats, playerDetails }
     })
 }
-
 
 module.exports = {
     status,
