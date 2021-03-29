@@ -3,13 +3,28 @@ const cache = require('../../modules/cache')
 const config = require('../../configs')
 
 
-const formatDate = date => {
+const startingTime = () => {
+    const date = new Date()
     let seconds = date.getUTCSeconds()
-    seconds = (seconds - (seconds % 10)) - 20
-    
-    date.setUTCSeconds(seconds)
-    date.setUTCMilliseconds(000)
+    if (seconds % 10 > 0){
+        seconds = (seconds - (seconds % 10)) 
+    }
+    date.setUTCSeconds(seconds - 60) // needs to have 45 seconds delay
+    date.setUTCMilliseconds(0)
     return date.toISOString()
+}
+
+
+const gamePlayerDetailsRequest = gameId => async () => {
+    const options = {
+        method: 'get',
+        url: `${config.GAME_LIVE_URL}/livestats/v1/details/${gameId}?startingTime=${startingTime()}`,
+        headers: {
+            'x-api-key': '0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z'
+        }
+    }
+    const { data } = await request(options)
+    return data
 }
 
 const gameDetailsRequest = (matchId) => async () => {
@@ -25,15 +40,20 @@ const gameDetailsRequest = (matchId) => async () => {
 }
 
 const gameStatsRequest = (gameId) => async () => {
-    const date = new Date()
     const options = {
         method: 'get',
-        url: `${config.GAME_LIVE_URL}/livestats/v1/window/${gameId}?startingTime=${formatDate(date)}`
+        url: `${config.GAME_LIVE_URL}/livestats/v1/window/${gameId}?startingTime=${startingTime()}`
     }
     
     const { data: stats } = await request(options)
     return { stats }
 }
+
+const getGamePlayerDetails = gameId => cache(
+    'player_details',
+    gameId,
+    gamePlayerDetailsRequest(gameId)
+)
 
 const getGameDetails = matchId => cache(
     'game_details',
@@ -49,5 +69,6 @@ const getGameStats = gameId => cache(
 
 module.exports = {
     getGameDetails,
-    getGameStats
+    getGameStats,
+    getGamePlayerDetails
 }

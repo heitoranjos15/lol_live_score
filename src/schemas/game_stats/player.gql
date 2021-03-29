@@ -10,6 +10,7 @@ type Player {
     farm: Int!
     currentHealth: Int!
     maxHealth: Int!
+    items: [Item]!
 }
 
 enum Position {

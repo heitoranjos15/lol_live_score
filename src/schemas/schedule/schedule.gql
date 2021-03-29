@@ -1,18 +1,9 @@
 type Event {
-    start_time: String!
+    eventId: String
+    startTime: String!
     status: String!
-    type: String!
-    stage: String!
+    eventType: String!
     league: String!
-    teams: [TeamEvent!]!
-    strategy: String!
-}
-
-type TeamEvent {
-    name: String!
-    record: String! 
-}
-
-type Query {
-    schedule: [Event]!
+    bestOf: String
+    games: [EventGameDetails!]
 }

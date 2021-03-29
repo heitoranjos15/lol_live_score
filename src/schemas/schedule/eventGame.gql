@@ -1,0 +1,5 @@
+type EventGameDetails {
+    gameId: String!
+    gameNumber: Int!
+    state: String!
+}

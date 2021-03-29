@@ -1,4 +1,5 @@
 {
     "EVENTS_URL": "https://esports-api.lolesports.com",
-    "GAME_LIVE_URL": "https://feed.lolesports.com"
+    "GAME_LIVE_URL": "https://feed.lolesports.com",
+    "ITEMS_URL": "https://ddragon.bangingheads.net/cdn/11.5.1/img/item"
 }

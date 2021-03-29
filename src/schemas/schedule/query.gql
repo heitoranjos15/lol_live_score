@@ -1,0 +1,11 @@
+type Query {
+    matches(status: scheduleStatus, date: String): [Event]!
+    eventGameById(eventGameId: String): EventGameDetails!
+    allGamesEvents(eventId: String): [EventGameDetails!]!
+}
+
+enum scheduleStatus {
+    IN_PROGRESS
+    COMPLETED
+    UNSTARTED
+}

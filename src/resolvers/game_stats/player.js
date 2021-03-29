@@ -1,3 +1,6 @@
+const { getGamePlayerDetails } = require('../../lib/game')
+
+
 const name = ({ playerDetails: { summonerName } }) => summonerName
 
 const position = ({ playerDetails: { role } }) => role.toUpperCase()
@@ -20,6 +23,15 @@ const currentHealth = ({ playerStats: { currentHealth } }) => currentHealth
 
 const maxHealth = ({ playerStats: { maxHealth } }) => maxHealth
 
+const items = async ({ playerDetails, gameId }) => {
+    const gamePlayerDetails = await getGamePlayerDetails(gameId)
+    const { frames: gamePlayerStatus } = gamePlayerDetails
+    const { participants: playersDetails } = gamePlayerStatus.slice(-1)[0]
+    const { items: playerItems } = playersDetails.filter(
+        ({participantId}) => participantId === playerDetails.participantId)[0]
+    return playerItems
+}
+
 module.exports = {
     name,
     position,
@@ -31,5 +43,6 @@ module.exports = {
     deaths,
     assists,
     currentHealth,
-    maxHealth
+    maxHealth,
+    items
 }

@@ -14,13 +14,12 @@ const kills = ({ teamStats: { totalKills } }) => totalKills
 
 const side = ({ side }) => side.toUpperCase()
 
-const players = ({ teamStats: { participants }, playerDetails }) => playerDetails
+const players = ({ teamStats: { participants }, playerDetails, gameId }) => playerDetails
     .map(playerDetails => {
         const { participantId: detailsCode } = playerDetails
         const playerStats = participants
             .filter(({ participantId: statsCode }) => detailsCode === statsCode)[0]
-        console.log({ playerDetails, playerStats })
-        return { playerDetails, playerStats }
+        return { playerDetails, playerStats, gameId }
     })
 
 module.exports = {

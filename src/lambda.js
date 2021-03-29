@@ -9,9 +9,7 @@ const server = new ApolloServer({
     endpoint: "/local/graphql"
   },
   context: ({ event }) => {
-    console.log(event)
     const { headers: { Authorization: token }} = event
-    console.log(token)
   }
 })
 

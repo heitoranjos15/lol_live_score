@@ -1,0 +1,7 @@
+type EventTeam {
+    name: String!
+    logoUrl: String!
+    teamId: String!
+    nameAbbreviation: String!
+    gamesWon: Int!
+}
